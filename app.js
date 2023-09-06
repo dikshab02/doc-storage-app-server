@@ -3,6 +3,7 @@ const APP = EXPRESS();
 const CORS = require("cors");
 const PORT = 3300;
 
+
 APP.use(EXPRESS.json());
 APP.use(EXPRESS.urlencoded({ extended: true }));
 APP.use(
@@ -17,6 +18,7 @@ require("./src/configs/database.config")(APP);
 require("./src/routes/login.route")(APP);
 require("./src/routes/logout.route")(APP);
 require("./src/routes/signup.route")(APP);
+require("./src/routes/doc.route")(APP);
 
 
 APP.listen(PORT, function () {

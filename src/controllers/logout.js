@@ -12,7 +12,6 @@ module.exports = {
             })
         }
         catch(error) {
-            console.log('Error: ', error)
             res.status(500).json({
                 isError: true,
                 message: 'Server error',
