@@ -24,7 +24,7 @@ module.exports = (APP) => {
       secret: "doc-storage-app",
       resave: false,
       saveUninitialized: true,
-      cookie: { maxAge: 3600000, httpOnly: false },
+      cookie: { maxAge: 360000000, httpOnly: false },
       store: CONNECT_MONGO_STORE.create({
         mongoUrl: MONGODB_URL,
       }),

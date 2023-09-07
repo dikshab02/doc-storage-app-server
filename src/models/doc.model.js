@@ -34,6 +34,9 @@ const DOC_SCHEMA = new MONGOOSE.Schema({
   },
   path: {
     type: STRING
+  },
+  description: {
+    type: STRING
   }
 });
 

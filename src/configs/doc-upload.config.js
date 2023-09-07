@@ -1,21 +1,34 @@
 const MULTER = require("multer");
+const fileFormatArr = ['pdf','txt','jpg','jpeg','png', 'xlsx', 'xls', 'doc', 'docx'];
+
+const getExtension = (fileName) => {
+  const arr = fileName.split('.');
+  return arr[arr.length - 1];
+}
 
 //Configuration for Multer
 const multerStorage = MULTER.diskStorage({
     destination: (req, file, cb) => {
       cb(null, "public/files");
     },
-    filename: (req, file, cb) => {
-      const ext = file.mimetype.split("/")[1];
+    filename: (req, file, cb) => {  
+      const ext = getExtension(file.originalname);
       cb(null, `${file.originalname}-${Date.now()}.${ext}`);
     },
   });
+
+  const isExtAllowed = (ext) => {
+    return fileFormatArr.some((format)=> format === ext )
+  }
   
   const multerFilter = (req, file, cb) => {
-    if (file.mimetype.split("/")[1] === "pdf") {
+    if(isExtAllowed(getExtension(file.originalname) )){
+
+    // }
+    // if (file.mimetype.split("/")[1] === "pdf") {
       cb(null, true);
     } else {
-      cb(new Error("Not a PDF File!!"), false);
+      cb(new Error("Extension not allowed!!"), false);
     }
   };
   
